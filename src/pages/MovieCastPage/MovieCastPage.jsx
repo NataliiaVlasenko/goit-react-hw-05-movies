@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { getCast } from '../../services/api';
 import { nanoid } from 'nanoid';
 import { ImUserMinus } from 'react-icons/im';
+import Loader from '../../components/Loader/Loader';
+import {Container, CastList, SubTitle} from './MovieCastPage.styled';
 
 const MovieCastPage = () => {
   const { movieId } = useParams();
@@ -27,26 +29,26 @@ const MovieCastPage = () => {
   }, [movieId]);
 
   return (
-    <>
-      {loading && 'Loading...'}
+    <Container>
+      {loading && <Loader/>}
       {error && <div>{error}</div>}
-      <ul>
+      <CastList>
         {cast.map(castItem => {
           return (
             <li key={castItem.id + nanoid()}>
               <img
-                src={`https://image.tmdb.org/t/p/w300${castItem.profile_path}`}
+                src={`https://image.tmdb.org/t/p/w200${castItem.profile_path}`}
                 alt={`${castItem.name} portrait`}
               />
               <div>
-                <p>Name: {castItem.name}</p>
-                <p>Character: {castItem.character}</p>
+                <SubTitle>Name: {castItem.name}</SubTitle>
+                <SubTitle>Character: {castItem.character}</SubTitle>
               </div>
             </li>
           );
         })}
-      </ul>
-    </>
+      </CastList>
+    </Container>
   );
 };
 

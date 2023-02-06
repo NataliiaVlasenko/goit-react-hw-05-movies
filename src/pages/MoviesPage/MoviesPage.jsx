@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from '../../services/api';
 import { MovieList } from 'components/MovieList/MovieList';
 import { toast } from 'react-toastify';
+import Loader from '../../components/Loader/Loader';
+import {Container} from './MoviePage.styled';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -46,11 +48,12 @@ const MoviesPage = () => {
   };
 
   return (
-    <div>
+    <Container>
      
       <SearchBar onSearch={handleSearch} />
+      {status === 'pending' && <Loader/>}
       {movies.length > 0 && <MovieList movies={movies} />}
-    </div>
+    </Container>
   );
 };
 export default MoviesPage;

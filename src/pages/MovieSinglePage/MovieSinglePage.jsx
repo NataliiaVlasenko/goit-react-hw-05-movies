@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {getSingleMovie} from '../../services/api';
 import { useLocation } from 'react-router-dom';
 import {MovieDetails} from '../../components/MovieDetails/MovieDetails';
+import Loader from '../../components/Loader/Loader';
 
 const MovieSinglePage = () => {
 
@@ -31,7 +32,7 @@ const MovieSinglePage = () => {
 
 return(
 <div>
-
+{loading && <Loader/>}
 <MovieDetails  movie={movie} id = {movieId}/>
 </div>
 )
