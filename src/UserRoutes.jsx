@@ -24,7 +24,7 @@ const UserRoutes = () => {
           <Route path="cast" element={<MovieCastPage />} />
           <Route path="reviews" element={<MovieReviewsPage />} />
         </Route>
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<HomePage />} />
 
         {/* /movies/:movieId */}
       </Routes>
